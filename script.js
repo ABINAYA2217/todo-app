@@ -1,93 +1,108 @@
+// Load users & tasks from localStorage
 let users = JSON.parse(localStorage.getItem("users")) || [];
 let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
-let filter = "all";
 
-/* SIGNUP */
+/* ================= SIGNUP ================= */
 function signup() {
-    let u = document.getElementById("signupUser").value;
-    let p = document.getElementById("signupPass").value;
+    let u = document.getElementById("signupUser").value.trim();
+    let p = document.getElementById("signupPass").value.trim();
 
-    users.push({user:u, pass:p});
+    if (u === "" || p === "") {
+        alert("Please enter username and password");
+        return;
+    }
+
+    // check user already exists
+    let exists = users.find(user => user.username === u);
+    if (exists) {
+        alert("User already exists! Try login.");
+        return;
+    }
+
+    users.push({ username: u, password: p });
     localStorage.setItem("users", JSON.stringify(users));
 
-    alert("Account created!");
-    window.location = "index.html";
+    alert("Account created successfully!");
+    window.location.href = "index.html";
 }
 
-/* LOGIN */
+/* ================= LOGIN ================= */
 function login() {
-    let u = document.getElementById("loginUser").value;
-    let p = document.getElementById("loginPass").value;
+    let u = document.getElementById("loginUser").value.trim();
+    let p = document.getElementById("loginPass").value.trim();
 
-    let found = users.find(x => x.user===u && x.pass===p);
+    let users = JSON.parse(localStorage.getItem("users")) || [];
 
-    if(found){
-        window.location = "todo.html";
+    let found = users.find(user => user.username === u && user.password === p);
+
+    if (found) {
+        alert("Login successful!");
+        window.location.href = "todo.html";
     } else {
-        alert("Invalid login");
+        alert("Invalid username or password");
     }
 }
 
-/* TASKS */
-function addTask(){
-    let text = document.getElementById("taskInput").value;
-    let time = document.getElementById("taskTime").value;
-    let priority = document.getElementById("priority").value;
+/* ================= TASK FUNCTIONS ================= */
 
-    if(text==="") return;
+function addTask() {
+    let input = document.getElementById("taskInput");
+    let text = input.value.trim();
 
-    tasks.push({text, time, priority, completed:false});
+    if (text === "") return;
+
+    tasks.push({ text: text, completed: false });
     localStorage.setItem("tasks", JSON.stringify(tasks));
+
+    input.value = "";
     displayTasks();
 }
 
-function displayTasks(){
+function displayTasks() {
     let list = document.getElementById("taskList");
-    if(!list) return;
+    if (!list) return;
 
     list.innerHTML = "";
 
-    tasks.sort((a,b)=>a.completed-b.completed);
+    tasks.forEach((task, index) => {
+        let li = document.createElement("li");
 
-    tasks.forEach((t,i)=>{
-        if(filter==="completed" && !t.completed) return;
-        if(filter==="pending" && t.completed) return;
+        // checkbox
+        let checkbox = document.createElement("input");
+        checkbox.type = "checkbox";
+        checkbox.checked = task.completed;
 
-        let li=document.createElement("li");
-        li.className=t.priority.toLowerCase();
+        checkbox.onchange = () => {
+            tasks[index].completed = checkbox.checked;
+            localStorage.setItem("tasks", JSON.stringify(tasks));
+            displayTasks();
+        };
 
-        if(t.completed) li.classList.add("completed");
+        // task text
+        let span = document.createElement("span");
+        span.textContent = task.text;
 
-        li.innerHTML=`
-        <input type="checkbox" onchange="toggle(${i})" ${t.completed?"checked":""}>
-        ${t.text}<br>
-        ${t.time}
-        <button onclick="del(${i})">Delete</button>
-        `;
+        if (task.completed) {
+            span.style.textDecoration = "line-through";
+        }
+
+        // delete button
+        let delBtn = document.createElement("button");
+        delBtn.textContent = "Delete";
+
+        delBtn.onclick = () => {
+            tasks.splice(index, 1);
+            localStorage.setItem("tasks", JSON.stringify(tasks));
+            displayTasks();
+        };
+
+        li.appendChild(checkbox);
+        li.appendChild(span);
+        li.appendChild(delBtn);
 
         list.appendChild(li);
     });
 }
 
-function toggle(i){
-    tasks[i].completed=!tasks[i].completed;
-    localStorage.setItem("tasks", JSON.stringify(tasks));
-    displayTasks();
-}
-
-function del(i){
-    tasks.splice(i,1);
-    localStorage.setItem("tasks", JSON.stringify(tasks));
-    displayTasks();
-}
-
-function filterTasks(f){
-    filter=f;
-    displayTasks();
-}
-
-function toggleDark(){
-    document.body.classList.toggle("dark");
-}
-
+// Load tasks when page loads
 displayTasks();
