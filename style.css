@@ -4,7 +4,7 @@ body {
     margin: 0;
 }
 
-/* Login / Signup */
+/* ================= LOGIN / SIGNUP ================= */
 .auth-container {
     display: flex;
     height: 100vh;
@@ -27,12 +27,29 @@ input, select {
     padding: 10px;
     margin: 10px;
     border-radius: 10px;
+    border: 1px solid #ccc;
 }
 
-/* Todo */
+/* ================= NAVBAR ================= */
+.navbar {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    padding: 15px;
+}
+
+.navbar button {
+    padding: 8px 15px;
+    border-radius: 20px;
+    border: none;
+    background: pink;
+    font-weight: bold;
+}
+
+/* ================= TODO ================= */
 .container {
     width: 380px;
-    margin: 50px auto;
+    margin: 30px auto;
     background: white;
     padding: 20px;
     border-radius: 20px;
@@ -43,6 +60,9 @@ li {
     margin: 10px;
     padding: 10px;
     border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .completed {
@@ -54,24 +74,94 @@ li {
 .medium { border-left: 5px solid orange; }
 .low { border-left: 5px solid green; }
 
+/* ================= BUTTON ================= */
 button {
     background: pink;
     border: none;
     padding: 10px;
     border-radius: 10px;
+    cursor: pointer;
 }
 
+/* ================= DARK MODE ================= */
 .dark {
-    background: black;
+    background-color: #121212;
     color: white;
 }
+
+.dark li {
+    background: #1e1e1e;
+}
+
+.dark .container {
+    background: #1e1e1e;
+}
+
+/* ================= SOCIAL ================= */
 .social {
-  margin-top: 15px;
+    margin-top: 15px;
 }
 
 .social a {
-  margin-right: 10px;
-  text-decoration: none;
-  color: #333;
-  font-weight: bold;
+    margin-right: 10px;
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
 }
+
+/* ================= NOTES ================= */
+#noteInput {
+    width: 70%;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+}
+
+#notesList {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.note {
+    width: 300px;
+    background: white;
+    padding: 15px;
+    margin: 10px;
+    border-radius: 12px;
+    box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    display: flex;
+    justify-content: space-between;
+    transition: 0.3s;
+}
+
+.note:hover {
+    transform: scale(1.03);
+}
+
+.note span {
+    flex: 1;
+    text-align: left;
+}
+
+.note button {
+    background: red;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 5px 10px;
+}
+#waterList {
+    margin-top: 20px;
+}
+
+.water-item {
+    background: white;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
