@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>To-Do App</title>
+<link rel="stylesheet" href="style.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<!-- 🔥 NAVBAR -->
+<div class="navbar">
+    <button onclick="showSection('home')">Home</button>
+    <button onclick="showSection('tasks')">Tasks</button>
+    <button onclick="showSection('water')">Water</button>
+    <button onclick="showSection('settings')">Settings</button>
+</div>
+
+<!-- 🏠 HOME -->
+<div id="homeSection">
+
+    <h2>📝 My Notes</h2>
+
+    <input type="text" id="noteInput" placeholder="Write a note...">
+    <button onclick="addNote()">Add Note</button>
+
+    <div id="notesList"></div>
+
+</div>
+
+<!-- ✅ TASKS -->
+<div id="tasksSection" style="display:none;">
+    <div class="container">
+
+        <h1>My Tasks</h1>
+
+        <input type="text" id="taskInput" placeholder="Enter task">
+        <input type="datetime-local" id="taskTime">
+
+        <select id="priority">
+            <option>Low</option>
+            <option>Medium</option>
+            <option>High</option>
+        </select>
+
+        <button onclick="addTask()">Add</button>
+
+        <br><br>
+
+        <button onclick="filterTasks('all')">All</button>
+        <button onclick="filterTasks('completed')">Completed</button>
+        <button onclick="filterTasks('pending')">Pending</button>
+
+        <button onclick="toggleDarkMode()">Dark</button>
+
+        <ul id="taskList"></ul>
+
+    </div>
+</div>
+
+<!-- 💧 WATER -->
+<div id="waterSection" style="display:none;">
+    <h2>💧 Water Reminder</h2>
+
+    <input type="time" id="waterTime">
+    <button onclick="addWaterTime()">Add Time</button>
+
+    <div id="waterList"></div>
+</div>
+
+<!-- ⚙️ SETTINGS -->
+<div id="settingsSection" style="display:none;">
+    <h2>Settings</h2>
+
+    <button onclick="toggleDarkMode()">Dark Mode</button>
+    <button onclick="logout()">Logout</button>
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,167 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #fceabb, #f8b500);
+    margin: 0;
+}
+
+/* ================= LOGIN / SIGNUP ================= */
+.auth-container {
+    display: flex;
+    height: 100vh;
+}
+
+.image-box img {
+    width: 100%;
+    height: 100vh;
+    object-fit: cover;
+}
+
+.form-box {
+    width: 50%;
+    margin: auto;
+    text-align: center;
+}
+
+input, select {
+    width: 80%;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+}
+
+/* ================= NAVBAR ================= */
+.navbar {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    padding: 15px;
+}
+
+.navbar button {
+    padding: 8px 15px;
+    border-radius: 20px;
+    border: none;
+    background: pink;
+    font-weight: bold;
+}
+
+/* ================= TODO ================= */
+.container {
+    width: 380px;
+    margin: 30px auto;
+    background: white;
+    padding: 20px;
+    border-radius: 20px;
+}
+
+li {
+    background: #f9f9f9;
+    margin: 10px;
+    padding: 10px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.completed {
+    text-decoration: line-through;
+    color: gray;
+}
+
+.high { border-left: 5px solid red; }
+.medium { border-left: 5px solid orange; }
+.low { border-left: 5px solid green; }
+
+/* ================= BUTTON ================= */
+button {
+    background: pink;
+    border: none;
+    padding: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+/* ================= DARK MODE ================= */
+.dark {
+    background-color: #121212;
+    color: white;
+}
+
+.dark li {
+    background: #1e1e1e;
+}
+
+.dark .container {
+    background: #1e1e1e;
+}
+
+/* ================= SOCIAL ================= */
+.social {
+    margin-top: 15px;
+}
+
+.social a {
+    margin-right: 10px;
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+}
+
+/* ================= NOTES ================= */
+#noteInput {
+    width: 70%;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+}
+
+#notesList {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.note {
+    width: 300px;
+    background: white;
+    padding: 15px;
+    margin: 10px;
+    border-radius: 12px;
+    box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    display: flex;
+    justify-content: space-between;
+    transition: 0.3s;
+}
+
+.note:hover {
+    transform: scale(1.03);
+}
+
+.note span {
+    flex: 1;
+    text-align: left;
+}
+
+.note button {
+    background: red;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 5px 10px;
+}
+#waterList {
+    margin-top: 20px;
+}
+
+.water-item {
+    background: white;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
